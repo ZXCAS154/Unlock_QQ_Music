@@ -1,0 +1,60 @@
+  Unlock Music — QQ音乐加密歌曲解锁
+
+  解密 QQ 音乐加密歌曲，统一转为 MP3 格式。
+  自动获取歌曲信息 (歌名/歌手/专辑) 并嵌入 MP3。
+  自动下载专辑封面并嵌入 MP3。
+
+【使用方法】
+
+  1. 将 unlock.exe 和 ffmpeg.exe 放到加密歌曲所在目录
+  2. 双击 !一键解锁.bat，选 [1] 一键解锁
+
+  或者命令行：
+    unlock.exe                    处理当前目录
+    unlock.exe --input D:\songs   处理指定目录
+    unlock.exe --help             查看帮助
+
+【菜单选项】
+
+  [1] 一键解锁  —  解密 + MP3 320k + 获取歌曲信息 + 嵌入专辑封面
+  [2] 仅解密    —  只解密，保留原始格式，获取歌曲信息
+  [3] 自定义    —  指定码率、跳过歌曲信息/封面等
+
+【命令行选项】
+
+  --no-mp3        只解密，不转 MP3
+  --no-meta       跳过获取歌曲信息
+  --no-cover      跳过下载专辑封面
+  --bitrate N     MP3 码率 kbps (默认 320)
+  --input DIR     源文件目录
+  --output DIR    输出目录 (默认 ./decrypted)
+
+【歌曲信息来源】
+
+  1. 从加密文件中提取 songID → 调用 QQ 音乐 API 获取
+  2. 若无 songID，则从文件名解析并搜索 QQ 音乐 API
+     文件名格式：歌手 - 歌名.mgg
+  3. 自动下载专辑封面并嵌入到 MP3 文件中
+
+【支持的格式】
+
+  .mgg .mflac .qmcflac .qmcogg .qmc0 .qmc3 .mmp4
+  .mgg1 .mggl .mflac0 .mflach
+
+  支持 QQ 音乐新版 EncV2 加密。
+
+【注意事项】
+
+  - 输出目录为 ./decrypted
+  - ffmpeg.exe 需在同目录才能自动转 MP3
+  - 如不转 MP3，解密后保留原始格式 (ogg/flac/m4a/mp3)
+  - 歌曲信息通过 QQ 音乐 API 获取，需要网络连接
+  - 无网络时自动从文件名解析基础信息
+
+【文件说明】
+
+  unlock.exe        主程序
+  ffmpeg.exe        音频转码工具 (可选)
+  !一键解锁.bat      一键启动脚本
+  !一键解锁.ps1      PowerShell 启动脚本
+  使用说明.txt       本文件
